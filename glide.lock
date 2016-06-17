@@ -1,0 +1,10 @@
+hash: ede7c3cd716cd9384e00f9375eb718613d8933fc8b9cdc4761defd1def7240f0
+updated: 2016-06-16T17:49:11.750738314-07:00
+imports:
+- name: github.com/go-sql-driver/mysql
+  version: 3654d25ec346ee8ce71a68431025458d52a38ac0
+- name: golang.org/x/net
+  version: d7bf3545bb0dacf009c535b3d3fbf53ac0a339ab
+  subpackages:
+  - websocket
+devImports: []

@@ -1,0 +1,6 @@
+package: github.com/alokmenghrajani/mybot
+import:
+- package: github.com/go-sql-driver/mysql
+- package: golang.org/x/net
+  subpackages:
+  - websocket

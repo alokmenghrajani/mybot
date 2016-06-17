@@ -1,0 +1,9 @@
+{
+  "bot_name": "mybot",
+  "slack_api_token": "xoxb-XXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXX",
+  "mysql_conn_string": "user@/ctf?charset=utf8",
+  "pdf_latex_binary": "/usr/local/bin/pdflatex",
+  "convert_binary": "/usr/local/bin/convert",
+  "www_directory": "/var/www/",
+  "www_url": "http://localhost/"
+}
