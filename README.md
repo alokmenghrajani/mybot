@@ -1,10 +1,8 @@
-
 # mybot
 
-`mybot` is an working Slack bot written in Go. Fork it and use it to build
-your very own cool Slack bot!
+`mybot` is a Slack bot I wrote for a capture the flag (CTF).
 
-Check the [blog post](https://www.opsdash.com/blog/slack-bot-in-golang.html)
-for a description of mybot internals.
+I initially forked https://github.com/rapidloop/mybot.
 
-Follow us on Twitter today! [@therapidloop](https://twitter.com/therapidloop)
+Given that the bot has a bunch of security bugs, I would recommend only
+running it in some throwaway cloud server.
