@@ -8,6 +8,6 @@ mybot:	vendor $(SOURCE_FILES)
 vendor:
 	glide install
 
-mybot_linux:	vendor $(SOURC_FILES)
+mybot_linux:	vendor $(SOURCE_FILES)
 	GOOS=linux GOARCH=amd64 go build -o mybot_linux .
 	scp mybot_linux ctf.quaxio.com:~/

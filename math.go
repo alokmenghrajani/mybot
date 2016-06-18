@@ -63,9 +63,7 @@ func math(config Config, ws *websocket.Conn, user string, channel string, expr s
     cmd.Stderr = &stderr
 		err = cmd.Run()
 		if err != nil {
-      m.Text = fmt.Sprintf("<@%s>: failed running %s, %s", user, cmd, err)
-      m.Text = fmt.Sprintf("<@%s>: %s", user, stdout.String())
-      m.Text = fmt.Sprintf("<@%s>: %s", user, stderr.String())
+      m.Text = fmt.Sprintf("<@%s>: failed running %s, %s\nstdout: %s\nstderr: %s\n", user, cmd, err, stdout.String(), stderr.String())
     	postMessage(ws, m)
       return
     }

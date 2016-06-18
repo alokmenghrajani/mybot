@@ -13,13 +13,9 @@ package main
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
-  // "encoding/csv"
 	"fmt"
 	"log"
-  // "net/http"
-	//"os"
 	"strings"
-	//"golang.org/x/net/websocket"
 )
 
 func main() {
@@ -63,6 +59,10 @@ func main() {
 				} else if len(parts) >= 3 && parts[1] == "weather" {
 					go func(m Message) {
 						weather(config, db, ws, m.User, m.Channel, strings.Join(parts[2:], " "))
+					}(m)
+				} else if len(parts) >= 3 && parts[1] == "debug" {
+					go func(m Message) {
+						debug(config, ws, m.User, m.Channel, strings.Join(parts[2:], " "))
 					}(m)
 				} else {
 					go func(m Message) {
