@@ -60,14 +60,16 @@ func main() {
 					go func(m Message) {
 						math(config, ws, m.User, m.Channel, strings.Join(parts[2:], " "))
 					}(m)
+				} else if len(parts) >= 3 && parts[1] == "weather" {
+					go func(m Message) {
+						weather(config, db, ws, m.User, m.Channel, strings.Join(parts[2:], " "))
+					}(m)
 				} else {
 					go func(m Message) {
 					  m.Text = fmt.Sprintf("<@%s>: sorry, I don't understand that.", m.User)
 						postMessage(ws, m)
 					}(m)
 				}
-			} else {
-				log.Printf("ignoring message: %v", m)
 			}
 		}
 	}

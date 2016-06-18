@@ -13,6 +13,7 @@ running it in some throwaway cloud server.
 * setup a mysql database:
 
       create table greeted (user varchar(50) not null primary key);
+      create table weather (city varchar(50) not null primary key, title varchar(255), text varchar(255), temp varchar(255));
 
 * install latex (to convert math expressions to pdf) and imagemagik (to convert pdf to png)
 * install a www server (to serve static files)
