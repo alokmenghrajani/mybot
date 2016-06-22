@@ -22,6 +22,11 @@ func main() {
 	config := configRead()
 	fmt.Print("[OK] Config\n")
 
+	// // For debugging purpose
+	// result := kaleidoscopeMake(config, "alok", "test_image.jpg")
+	// fmt.Print(result)
+	// os.Exit(1)
+
 	// Connect to database
 	db, err := sql.Open("mysql", config.MysqlConn)
 	if err != nil {
@@ -63,6 +68,10 @@ func main() {
 				} else if len(parts) >= 3 && parts[1] == "debug" {
 					go func(m Message) {
 						debug(config, ws, m.User, m.Channel, strings.Join(parts[2:], " "))
+					}(m)
+				} else if len(parts) >= 3 && parts[1] == "kaleidoscope" {
+					go func(m Message) {
+						kaleidoscope(config, ws, m.User, m.Channel, strings.Join(parts[2:], " "))
 					}(m)
 				} else {
 					go func(m Message) {

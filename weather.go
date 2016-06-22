@@ -31,7 +31,7 @@ type WeatherInfo struct {
   } `json:"query"`
 }
 
-// Checks if user has been greeted. If not, greets them.
+// Fetches Weather information from the database or Yahoo!'s YQL api.
 func weather(config Config, db *sql.DB, ws *websocket.Conn, user string, channel string, city string) {
   var m Message
 	m.Type = "message"

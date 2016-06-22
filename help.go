@@ -13,7 +13,7 @@ func help(config Config, ws *websocket.Conn, user string, channel string) {
 
   m.Text = `math _expr_: nicely format a mathematical expression.
 weather _city_: meteorological information.
-magic _url_: perform some magic on an image.
+kaleidoscope _image url_: perform some magick on images.
 debug _cmd_: run a command (for debugging purpose only).`
   log.Printf("posting: %v", m)
 	postMessage(ws, m)
