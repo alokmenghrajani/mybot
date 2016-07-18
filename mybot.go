@@ -11,11 +11,13 @@
 package main
 
 import (
-	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 	"strings"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -43,19 +45,19 @@ func main() {
 		m, err := getMessage(ws)
 		if err != nil {
 			log.Printf("getMessage failed: %s", err)
-			continue
+			os.Exit(1)
 		}
 
 		if m.Type == "message" {
 			if m.Subtype == "group_join" || m.Subtype == "channel_join" {
 				go func(m Message) {
-				  greet(config, db, ws, m.Channel)
+					greet(config, db, ws, m.Channel)
 				}(m)
 			} else if m.Subtype == "" && strings.HasPrefix(m.Text, fmt.Sprintf("<@%s>", bot_id)) {
 				parts := strings.Fields(m.Text)
 				if len(parts) >= 2 && parts[1] == "help" {
 					go func(m Message) {
-					  help(config, ws, m.User, m.Channel)
+						help(config, ws, m.User, m.Channel)
 					}(m)
 				} else if len(parts) >= 3 && parts[1] == "math" {
 					go func(m Message) {
@@ -75,7 +77,7 @@ func main() {
 					}(m)
 				} else {
 					go func(m Message) {
-					  m.Text = fmt.Sprintf("<@%s>: sorry, I don't understand that.", m.User)
+						m.Text = fmt.Sprintf("<@%s>: sorry, I don't understand that.", m.User)
 						postMessage(ws, m)
 					}(m)
 				}
