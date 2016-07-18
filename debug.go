@@ -25,5 +25,8 @@ func debug(config Config, ws *websocket.Conn, user string, channel string, cmd s
 	} else {
 		m.Text = fmt.Sprintf("<@%s>: ```%s```\nstderr: ```%s```\n", user, stdout.String(), stderr.String())
 	}
+	if len(m.Text) > 4096 {
+		m.Text = m.Text[:4096]
+	}
 	postMessage(ws, m)
 }
