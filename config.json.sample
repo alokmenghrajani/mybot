@@ -1,5 +1,5 @@
 {
-  "bot_name": "mybot",
+  "bot_name": "cyber_thought_leader",
   "slack_api_token": "xoxb-XXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXX",
   "mysql_conn_string": "user@/ctf?charset=utf8",
   "pdf_latex_binary": "/usr/local/bin/pdflatex",
