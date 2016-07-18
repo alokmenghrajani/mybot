@@ -21,9 +21,9 @@ func debug(config Config, ws *websocket.Conn, user string, channel string, cmd s
 	run.Stderr = &stderr
 	err := run.Run()
 	if err != nil {
-		m.Text = fmt.Sprintf("<@%s>: failed running %s, %s\nstdout: %s\nstderr: %s\n", user, run, err, stdout.String(), stderr.String())
+		m.Text = fmt.Sprintf("<@%s>: failed running %s, %s\n```stdout: %s\nstderr: %s```\n", user, run, err, stdout.String(), stderr.String())
 	} else {
-		m.Text = fmt.Sprintf("<@%s>: %s\nstderr: %s\n", user, stdout.String(), stderr.String())
+		m.Text = fmt.Sprintf("<@%s>: ```%s\nstderr: %s```\n", user, stdout.String(), stderr.String())
 	}
 	postMessage(ws, m)
 }
