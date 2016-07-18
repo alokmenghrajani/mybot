@@ -13,21 +13,17 @@ type Tip struct {
   Prob int32
 }
 
-// Checks if user has been greeted. If not, greets them.
-func greet(config Config, db *sql.DB, ws *websocket.Conn, user string, channel string) {
-  if (user == config.BotName) {
-    // Don't self-greet
-    return
-  }
+// Checks if the channel has been greeted. If not, greets them.
+func greet(config Config, db *sql.DB, ws *websocket.Conn, channel string) {
   var m Message
 	m.Type = "message"
 	m.Channel = channel
 
 	// Read from database
-	rows, err := db.Query(fmt.Sprintf("SELECT * FROM greeted WHERE user='%s'", user))
+	rows, err := db.Query(fmt.Sprintf("SELECT * FROM greeted WHERE user='%s'", channel))
 	if err != nil {
     log.Print(err)
-    m.Text = fmt.Sprintf("<@%s>: %s", user, err)
+    m.Text = fmt.Sprintf("%s", err)
   	postMessage(ws, m)
     return
 	}
@@ -35,10 +31,10 @@ func greet(config Config, db *sql.DB, ws *websocket.Conn, user string, channel s
   if rows.Next() {
     return
   }
-  _, err = db.Exec(fmt.Sprintf("INSERT INTO greeted SET user='%s'", user))
+  _, err = db.Exec(fmt.Sprintf("INSERT INTO greeted SET user='%s'", channel))
   if err != nil {
     log.Print(err)
-    m.Text = fmt.Sprintf("<@%s>: %s", user, err)
+    m.Text = fmt.Sprintf("%s", err)
   } else {
     tips := []Tip {
       Tip{"Protip: invite me to your private channel.", 10},
@@ -53,10 +49,10 @@ func greet(config Config, db *sql.DB, ws *websocket.Conn, user string, channel s
       Tip{"I do not fear computers. I fear the lack of them.", 100},
     }
     r := rand.Int31n(100)
-    m.Text = fmt.Sprintf("Hello <@%s>. I am a bot. Type `@%s help` for help.", user, config.BotName)
+    m.Text = fmt.Sprintf("Hello. I am a bot. Type `@%s help` for help.", config.BotName)
     for _, v := range tips {
       if v.Prob >= r {
-        m.Text = fmt.Sprintf("Hello <@%s>. I am a bot, type `@%s help` for help. %s", user, config.BotName, v.Message)
+        m.Text = fmt.Sprintf("Hello. I am a bot, type `@%s help` for help. %s", config.BotName, v.Message)
         break;
       }
     }

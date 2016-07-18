@@ -49,7 +49,7 @@ func main() {
 		if m.Type == "message" {
 			if m.Subtype == "group_join" || m.Subtype == "channel_join" {
 				go func(m Message) {
-				  greet(config, db, ws, m.User, m.Channel)
+				  greet(config, db, ws, m.Channel)
 				}(m)
 			} else if m.Subtype == "" && strings.HasPrefix(m.Text, fmt.Sprintf("<@%s>", bot_id)) {
 				parts := strings.Fields(m.Text)
