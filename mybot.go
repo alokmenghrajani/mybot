@@ -54,6 +54,7 @@ func main() {
 					greet(config, db, ws, m.Channel)
 				}(m)
 			} else if m.Subtype == "" && strings.HasPrefix(m.Text, fmt.Sprintf("<@%s>", bot_id)) {
+				fmt.Fprintf(os.Stderr, "got msg: '%s'", m.Text)
 				parts := strings.Fields(m.Text)
 				if len(parts) >= 2 && parts[1] == "help" {
 					go func(m Message) {
